@@ -1,0 +1,263 @@
+.table-cars th,
+.table-cars td {
+    border: 1px solid #dddddd;
+    padding: 10px;
+    text-align: left;
+}
+.table-cars {
+    border-collapse: collapse;
+    width: 100%;
+}
+.table-cars td img {
+    object-fit: cover;
+    width: 280px;
+    height: 140px;
+}
+.container {
+    width: 1200px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+.site-databoard {
+    position: relative;
+}
+.form-inner {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 50px 0;
+}
+
+.blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.form-inner,
+.blur {
+    transition: all 0.4s;
+    transform-origin: center center;
+    visibility: hidden;
+    opacity: 0;
+    transform: scale3d(0,0,0);
+}
+.form-inner.is-show,
+.blur.is-show {
+    visibility: visible;
+    opacity: 1;
+    transform: scale3d(1,1,1);
+} 
+
+.form-inner::-webkit-scrollbar {
+    display: none;
+}
+.form-parent {
+    width: 450px;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #dddddd;
+    background-color: #ffffff;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+.form-group input, 
+.form-group select,
+.form-group textarea,
+.form-group input:active, 
+.form-group textarea:active,
+.form-group select:active,
+.form-group input:focus, 
+.form-group select:focus,
+.form-group textarea:focus {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    resize: none;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.8);
+}
+.form-group input::placeholder, 
+.form-group textarea::placeholder {
+    font-size: 14px;
+    text-transform: capitalize;
+    color: rgba(0, 0, 0, 0.8);
+}
+.form-group:not(:last-child) {
+    margin-bottom: 20px;
+}
+.title-form {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+.form-group button,
+.display-form {
+    padding: 8px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid #22577E;
+    background-color: #22577E;
+    color: #ffffff;
+    text-transform: capitalize;
+}
+.hidden-form {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #dddddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+}
+.hidden-form svg,
+.btn-pagination svg {
+    height: 12px;
+    width: 12px;
+    fill: #22577E;
+}
+.pagination-item,
+.btn-pagination {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid #dddddd;
+    background-color: #ffffff;
+}
+.btn-pagination:disabled,
+.btn-pagination:disabled:hover {
+    background-color: #dddddd;
+    cursor: not-allowed;
+}
+.pagination-item.active{
+    background-color: #22577E;
+    border: 1px solid #22577E;
+    color: #ffffff;
+}
+.top-databoard {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    align-items: center;
+    justify-content: space-between;
+}
+.pagiantion-parent>*:not(:last-child),
+.pagination-item:not(:last-child) {
+    margin-right: 6px;
+}
+.btn-action {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    border: 1px solid #dddddd;
+    background-color: #ffffff;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+}
+.btn-action::before {
+    position: absolute;
+    top: -28px;
+    width: auto;
+    padding: 0 5px  ;
+    height: 20px;
+    border: 1px solid #222;
+    background-color: #222;
+    color: #ffffff;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-action::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #222;
+    top: -7px;
+}
+.btn-action::before, 
+.btn-action::after {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s;
+}
+.btn-action:hover::before, 
+.btn-action:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+.btn-edit::before {
+    content: "edit";
+}
+.btn-trash::before {
+    content: "delete";
+}
+.btn-view::before {
+    content: "view";
+}
+.btn-action:hover {
+    background-color: #22577E;
+    border: 1px solid #22577E;
+}
+.btn-action:hover svg {
+    fill: #ffffff;
+}
+.btn-action:not(:last-child) {
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.btn-action svg {
+    height: 13px;
+    width: 13px;
+}
+.btn-action a {
+    display: flex;
+}
+
+/* description */
+.desc {
+    display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  font-size: 14px; 
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.8);
+}
+.table-cars tbody td {
+    font-size: 14px; 
+    line-height: 1.5;
+    font-weight: 400;
+}

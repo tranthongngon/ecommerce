@@ -1,0 +1,92 @@
+{
+  "cars": [
+    {
+      "id": "11d014a0-2e73-4f40-b1c2-7b84347505b0",
+      "date": "Sat Apr 09 2022",
+      "name": "Volkswagen",
+      "urlImg": "https://images.unsplash.com/photo-1605475300127-0a31e8273bc2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2107&q=80",
+      "price": "50000",
+      "isStock": "true",
+      "description": "Volkswagen is a German car manufacturer, one of the largest car manufacturing companies in the world, part of the Volkswagen group. Its main market is Europe, famous brands under the company include Audi, Bentley, Skoda, Lamborghini, Bugatti, SEAT, Porsche and Volkswagen.",
+      "yearProduced": "2016",
+      "country": "DE"
+    },
+    {
+      "id": "d6eb20a7-ade2-4264-b53e-014779adba2c",
+      "date": "Sat Apr 09 2022",
+      "name": "Cadillac",
+      "urlImg": "https://images.unsplash.com/photo-1457088846009-9dbcf9d7643d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+      "price": "100000",
+      "isStock": "true",
+      "description": "Cadillac was one of the first automobile brands in the world, ranking second in the United States behind only compatriot GM Buick.",
+      "yearProduced": "1990",
+      "country": "US"
+    },
+    {
+      "id": "1a3bc530-23cc-4f4b-99e2-cc17bc32e51e",
+      "date": "Sat Apr 09 2022",
+      "name": "Ford",
+      "urlImg": "https://images.unsplash.com/photo-1551830820-330a71b99659?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+      "price": "80000",
+      "isStock": "true",
+      "description": "The Ford Motor Company is a multinational automobile manufacturer, selling automobiles and commercial vehicles under the Ford brand and most luxury vehicles under the Lincoln brand.",
+      "yearProduced": "2018",
+      "country": "US"
+    },
+    {
+      "id": "c040e9a8-a933-4d22-a3ea-c2581d597467",
+      "date": "Sat Apr 09 2022",
+      "name": "Honda",
+      "urlImg": "https://images.unsplash.com/photo-1578659258511-4a4e7dee7344?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1931&q=80",
+      "price": "40000",
+      "isStock": "true",
+      "description": "Honda is the world's largest Japanese engine manufacturer with a production volume of more than 14 million units per year. This is the foundation for the success of the company that started from a small motorcycle manufacturing company.",
+      "yearProduced": "2022",
+      "country": "JP"
+    },
+    {
+      "id": "054b49a2-f167-429b-8fa6-55d84d7d2ae7",
+      "date": "Sat Apr 09 2022",
+      "name": "Fiat",
+      "urlImg": "https://images.unsplash.com/photo-1599211697777-bac773d45bdf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+      "price": "70000",
+      "isStock": "false",
+      "description": "FIAT is an Italian automobile company, founded on July 11, 1899 in Turin, Italy. Currently, FIAT is a subsidiary of Fiat Chrysler Automobiles. The founder and first Chairman and CEO of Fiat was Giovanni Agnelli.",
+      "yearProduced": "2008",
+      "country": "IT"
+    },
+    {
+      "id": "74406b3a-ab2e-40c8-bb0d-4e4808c0775c",
+      "date": "Sun Aug 21 2022",
+      "name": "KIA",
+      "urlImg": "https://images.unsplash.com/photo-1651041943612-def8fe2b1d93?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "price": "50000",
+      "isStock": "true",
+      "description": "",
+      "yearProduced": "2018",
+      "country": "JP"
+    },
+    {
+      "id": "59f771b8-4e59-4dcb-acf2-ef5837a8dffb",
+      "date": "Sun Aug 21 2022",
+      "name": "Mercedes benz",
+      "urlImg": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "price": "150000",
+      "isStock": "true",
+      "description": "",
+      "yearProduced": "2018",
+      "country": "DE"
+    },
+    {
+      "id": "5ea84b0f-f14d-4d7a-89a4-3d4afeed3936",
+      "date": "Sun Aug 21 2022",
+      "name": "Audi",
+      "urlImg": "https://images.unsplash.com/photo-1623659248894-1a0272243054?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1205&q=80",
+      "price": "120000",
+      "isStock": "",
+      "description": "true",
+      "yearProduced": "2019",
+      "country": "DE"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+.site-header {
+    height: 60px;
+    background-color: #EFF8FF;
+}
+.site-header .site-logo a{
+    margin: 0;
+    font-family: 'Creepster', cursive;
+}
+.site-header .site-logo a {
+    text-decoration: none;
+}
+.header-inner {
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+.header-section:last-child>*:not(:last-child) {
+    margin-right: 15px;
+}
+.shopping-cart {
+    width: 50px;
+    padding: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.shopping-cart svg {
+    height: 15px;
+}
+
+.site-search {
+    position: relative;
+}
+.site-search input {
+    width: 250px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 8px 10px;
+    padding-right: 30px;
+    font-size: 14px;
+}
+.header-section.flex-box {
+    align-items: center;
+}
+.site-search button {
+    position: absolute;
+    top: 50%;
+    left: auto;
+    right: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.site-search button svg {
+    height: 15px;
+    width: fit-content;
+}
+.site-user .user svg {
+    height: 15px;
+    width: fit-content;
+}
+.btn-button-header {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #dddddd;
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+.btn-button-header .amount-item {
+    position: absolute;
+    top: 0;
+    right: -5px;
+    width: 17px;
+    height: 17px;
+    background: red;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.site-cart {
+    position: relative;
+}
