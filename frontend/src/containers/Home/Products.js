@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import carServices from '../../core/services/carServices';
 import Product from './Product/Product';
 import { getProdcuts } from '../../store/actions/productsAction';
