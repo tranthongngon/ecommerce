@@ -1,0 +1,5 @@
+export const GET_PRODUCTS = "GET_PRODUCTS";
+export const SET_PAGE_NUMBER = "SET_PAGE_NUMBER";
+export const GET_PRODUCT_EDIT = "GET_PRODUCT_EDIT";
+export const SET_TYPE_FORM = "SET_TYPE_FORM";
+export const GET_DATA_FORM = "GET_DATA_FORM";

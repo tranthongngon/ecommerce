@@ -2,7 +2,8 @@ import React, {useContext} from 'react';
 import { Cart } from '../../../context';
 import './product.css';
 import * as cartAction from '../../../store/actions/cartActions';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import dataCountry from '../../../core/data/dataCountry';
 
 const Product = ({productData,addToCart}) => {
     return (
@@ -16,19 +17,24 @@ const Product = ({productData,addToCart}) => {
                 </h3>
                 <div className='product-meta flex-box'>
                     <p className='product-country'>
-                        {productData.country}
+                        {dataCountry.filter(c => c.code === productData.country).map((p,index) => p.name)}
                     </p>
-                    <p className='product-year-produced'>
-                        {productData.yearProduced}
+                    <p className='product-trademark'>
+                        {String(productData.trademark).replace(/-/gi,' ')}
                     </p>
                 </div>
                 <div className='product-footer flex-box'>
                     <p className='product-price'>
-                        {productData.price}
+                        {Number(productData.price).toLocaleString('en-US',{
+                            style:'currency',
+                            currency:'USD',
+                        })}
                     </p>
-                    <button className='btn-add-to-cart' onClick={productData.isStock ==='true' ? (() => addToCart(productData)): ''}>
-                            {productData.isStock === "true" ? 'Ad To Cart' : 'Out of stock'}
-                    </button>
+                    <div className='product-button'>
+                        <button className='btn-add-to-cart' onClick={() => addToCart(productData)}>
+                                {productData.isStock === "true" ? 'Add To Cart' : 'Out of stock'}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

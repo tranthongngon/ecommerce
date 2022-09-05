@@ -10,6 +10,7 @@ import Home from './containers/Home/Home';
 import Header from './components/Header/Header';
 import './core/style/common.css'
 import CartPage from './containers/Cart/CartPage';
+import PageSearch from './containers/pageSearch/PageSearch';
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
               <Route path='/' element={<Home/>}/>
               <Route path='/databoard' element={<Databoard/>}/>
               <Route path='/cart' element={<CartPage/>}/>
+              <Route path='/search/:params' element={<PageSearch/>} />
           </Routes>
         </BrowserRouter>
     </div>

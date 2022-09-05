@@ -1,0 +1,130 @@
+.page-search {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.page-search .pagiantion-parent {
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.page-searh-tittle,
+.search-filter-tittle {
+    margin-bottom: 15px;
+}
+
+.page-searh-tittle h2,
+.search-filter-tittle h2 {
+    font-size: 22px;
+}
+
+.page-searh-tittle span {
+    color: #22577E;
+}
+
+.search-filter {
+    width: 200px;
+    padding-right: 20px;
+}
+.item-filter:not(:first-child) {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(34, 34, 34, 0.1);
+}
+
+.search-result {
+    flex: 1;
+}
+.title-child-filter {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #22577E;
+}
+
+.form-group-filter {
+    display: flex;
+    align-items: center
+}
+.item-filter:not(:last-child) .form-group-filter:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.form-group-filter input[type=checkbox] {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+}
+
+.form-group-filter label {
+    position: relative;
+    cursor: pointer;
+}
+
+.form-group-filter label:before {
+    top: -2px;
+    content: '';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 1px solid #22577E;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 6px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.form-group-filter input:checked+label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 4.5px;
+    width: 4px;
+    height: 7px;
+    border: solid red;
+    border-width: 0 1px 1px 0;
+    transform: rotate(45deg);
+}
+.form-price-filter {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.form-group-filter input[type=text] {
+    width: 100%;
+    padding: 4px 8px;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 3px;
+    border: 1px solid rgba(34, 34, 34, 0.5)
+}
+.btn-search-price,
+.btn-clear {
+    width: 100%;
+    padding: 5px 8px;
+    text-align: center;
+    border-radius: 3px;
+    border: 1px solid #22577E;
+    background-color: #22577E;
+    color: white;
+    cursor: pointer;
+    box-shadow: none;
+    font-size: 15px;
+    font-weight: 500;
+}
+.form-price-filter .form-group-filter:last-child {
+    width: 100%;
+    margin-top: -5px;
+}
+.search-not-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}

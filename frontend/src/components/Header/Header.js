@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {useState} from 'react'
 import { ReactComponent as CartIcon } from '../../assets/icon/shopping-cart.svg';
 import { ReactComponent as Search } from '../../assets/icon/search.svg';
@@ -6,14 +6,25 @@ import { ReactComponent as User } from '../../assets/icon/user.svg';
 import './header.css';
 import {connect} from 'react-redux';
 import CartView from '../../containers/Cart/CartView';
+import * as searchAction from '../../store/actions/searchAction';
 
 
-const Header = ({tottalQuantity}) => {
-    const [isShow, setisShow] = useState(false);
+const Header = ({tottalQuantity,getSearchParams,resetParams,paramsFilterS}) => {
+    const [isShow, setIsShow] = useState(false);
+    const [params, setParams] = useState('');
 
     const showCartView = () => {
-        setisShow(!isShow);
-        console.log(isShow);
+        setIsShow(!isShow);
+    }
+    const navigate = useNavigate();
+    const searchPage = e => {
+        e.preventDefault();
+        navigate(`/search/${params}`);
+    }
+    const onChangeSearchField = e => {
+        resetParams();
+        getSearchParams(`q=${e.target.value}`,true);
+        setParams(e.target.value);
     }
     return (
         <div className='site-header'>
@@ -26,10 +37,12 @@ const Header = ({tottalQuantity}) => {
                     </div>
                     <div className='header-section flex-box'>
                         <div className='site-search'>
-                            <input type="text" placeholder='search for...'/>
-                            <button className='btn-search'>
-                                <Search/>    
-                            </button>
+                            <form className='form-search' onSubmit={e => searchPage(e)}>
+                                <input type="text" placeholder='search for...' onChange={e => onChangeSearchField(e)}/>
+                                <button className='btn-search'>
+                                    <Search/>    
+                                </button>
+                            </form>
                         </div>
                         <div className='site-cart'>
                             <button className='shopping-cart btn-button-header' onClick={showCartView}>
@@ -55,7 +68,18 @@ const Header = ({tottalQuantity}) => {
 const mapStateToProps = state => {
     return {
         tottalQuantity: state.cartReducer.cartProducts.length,
+        paramsFilterS: state.searchReducer.params
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        getSearchParams: (param,status) => {
+            dispatch(searchAction.setSearchParams(param,status))
+        },
+        resetParams: () => {
+            dispatch(searchAction.resetParams())
+        }
     }
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps,mapDispatchToProps)(Header);

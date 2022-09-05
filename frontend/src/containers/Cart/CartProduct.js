@@ -1,4 +1,5 @@
 import React from 'react';
+import productController from '../controller/productController';
 
 const CartProduct = ({cartProduct}) => {
     return (
@@ -9,7 +10,9 @@ const CartProduct = ({cartProduct}) => {
             <div className='cart-product-content flex-box'>
                 <h3 className='cart-product-name'>{cartProduct.name}</h3>
                 <p className='cart-product-quantity'>quantity:{cartProduct.quantity}</p>
-                <p className='cart-product-price'>{cartProduct.price * cartProduct.quantity}$</p>
+                <p className='cart-product-price'>
+                    {productController.convertToCurrency(cartProduct.price * cartProduct.quantity)}        
+                </p>
             </div>
         </div>
     );

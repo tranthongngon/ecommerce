@@ -1,19 +1,27 @@
-import React, {useState} from 'react';
 import { ReactComponent as Close } from '../../assets/icon/close.svg';
 import dataCountry from '../../core/data/dataCountry.js';
-import CarController from '../controller/CarController';
+import productController from '../controller/productController';
+import * as databoardActions from '../../store/actions/databoardActions';
+import {connect} from 'react-redux';
 
-const Addeditdata = ({hiddenForm, typeAction,fetchCars}) => {
-
-    const [dataInput, setdataInput] = useState({name:"",linkImage:"", price:"",isStock:"", yearProduced:"", country:"", description:""});
-
+const Addeditdata = ({hiddenForm,fetchCars,typeForm,productEdit,getDataForm,dataForm}) => {
     const addCar = (e) => {
         e.preventDefault();
-        CarController.postCar(dataInput.name,dataInput.linkImage, dataInput.price, dataInput.isStock, dataInput.description, dataInput.yearProduced === "" ? "true": dataInput.yearProduced, dataInput.country)
+        productController.postProducts(dataForm.name,dataForm.urlImg, dataForm.price, dataForm.isStock === "" ? "true":dataForm.isStock, dataForm.description, dataForm.yearProduced, dataForm.country,dataForm.trademark)
+        .then(res => {
+            document.getElementById("form-add-edit-product").reset();
+            fetchCars();
+            for (const key in dataForm) {
+                getDataForm(key,"")
+            }
+        }).catch(err => console.log(err));
+    }
+    const editProduct = (e) => {
+        e.preventDefault();
+        productController.putProduct(dataForm.name,dataForm.urlImg, dataForm.price, dataForm.isStock === "" ? "true":dataForm.isStock, dataForm.description, dataForm.yearProduced, dataForm.country,dataForm.trademark,productEdit.id)
         .then(res => {
             fetchCars();
-            setdataInput({name:"",linkImage:"", price:"",isStock:"", yearProduced:"", country:"", description:""});
-        })
+        }).catch(err => console.log(err));
     }
 
     return (
@@ -23,30 +31,30 @@ const Addeditdata = ({hiddenForm, typeAction,fetchCars}) => {
             </button>
             <div className='title-form'>
                 <h3>
-                    Add Car
+                    {typeForm === 'edit' ? 'Edit Car':'Add Car'}
                 </h3>
             </div>
-            <form className='form-car'>
+            <form className='form-product' id ="form-add-edit-product">
                 <div className='form-group'>
-                    <input type="text" name="name" placeholder='name car' value={dataInput.name} onChange={(e) => setdataInput({...dataInput, name:e.target.value})}/>
+                    <input type="text" id="name-product" name="name" placeholder='name car' onChange={(e) => {getDataForm('name',e.target.value)}}/>
                 </div>
                 <div className='form-group'>
-                    <input type="text" name="url-img" placeholder='link image car' value={dataInput.linkImage} onChange={(e) => setdataInput({...dataInput,linkImage:e.target.value})}/>
+                    <input type="text" id="url-img-product" name="urlImg" placeholder='link image car'  onChange={(e) => {getDataForm('urlImg',e.target.value)}}/>
                 </div>
                 <div className='form-group'>
-                    <input type="text" name="price" placeholder='price' value={dataInput.price} onChange={(e) => setdataInput({...dataInput,price:e.target.value})}/>
+                    <input type="text" id="price-product" name="price" placeholder='price'  onChange={(e) => {getDataForm('price',e.target.value)}}/>
                 </div>
                 <div className='form-group'>
-                    <select type="text" name='is-stock' value={dataInput.isStock} onChange={(e) => setdataInput({...dataInput,isStock:e.target.value})}>
+                    <select type="text" id="is-stock-product" name='isStock'  onChange={(e) => {getDataForm('isStock',e.target.value)}}>
                         <option value="true">Stocking</option>
                         <option value="false">Out of stock</option>
                     </select>
                 </div>
                 <div className='form-group'>
-                    <input type="text" name="year-produced" placeholder='year produced' value={dataInput.yearProduced} onChange={(e) => setdataInput({...dataInput,yearProduced:e.target.value})}/>
+                    <input type="text" id="year-produced-product" name="yearProduced" placeholder='year produced'  onChange={(e) => {getDataForm('yearProduced',e.target.value)}}/>
                 </div>
                 <div className='form-group'>
-                    <select type="text" name="country" value={dataInput.country} onChange={(e) => setdataInput({...dataInput,country:e.target.value})}>
+                    <select type="text" id="country-product" name="country"  onChange={(e) => {getDataForm('country',e.target.value)}}>
                         {dataCountry.map((country, index) => (
                             <option key={index} value={country.code}>
                                 {country.name}
@@ -54,12 +62,15 @@ const Addeditdata = ({hiddenForm, typeAction,fetchCars}) => {
                     </select>
                 </div>
                 <div className='form-group'>
-                    <textarea type="text" name="description" placeholder='description' rows="6" value={dataInput.description} onChange={(e) => setdataInput({...dataInput,description:e.target.value})}></textarea>
+                    <input type="text" id="trademark-product" name="trademark" placeholder='trademark product'  onChange={(e) => {getDataForm('trademark',e.target.value)}}/>
                 </div>
                 <div className='form-group'>
-                    {typeAction === "add" ? (<button className='btn-add-car' onClick={addCar}>
+                    <textarea type="text" id="description-product" name="description" placeholder='description' rows="6" onChange={(e) => {getDataForm('description',e.target.value)}}></textarea>
+                </div>
+                <div className='form-group'>
+                    {typeForm === "add" ? (<button className='btn-add-car' onClick={addCar}>
                         Add Car
-                    </button>) : (<button className='btn-edit-car'>
+                    </button>) : (<button className='btn-edit-car' onClick={editProduct}>
                         Edit Car
                     </button>)}
                 </div>
@@ -68,4 +79,20 @@ const Addeditdata = ({hiddenForm, typeAction,fetchCars}) => {
     );
 }
 
-export default Addeditdata;
+const mapStateToProps = state => {
+    return {
+        typeForm : state.databoardReducer.type,
+        productEdit: state.databoardReducer.productEdit,
+        dataForm: state.databoardReducer.dataForm
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getDataForm: (nameF, valueF) => {
+            dispatch(databoardActions.getDataForm(nameF,valueF))
+        }
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Addeditdata);

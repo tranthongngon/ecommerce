@@ -4,12 +4,19 @@
     padding: 0;
     margin: 0;
     font-family: 'Roboto', sans-serif;
+    color: #222222;
 }
 html {
     font-size: 14px;
 }
+.site-wrapper {
+    background-color: #f2f2f2;
+}
 .title-form {
     font-family: 'Creepster', cursive;
+}
+.site-content {
+    padding: 50px 0;
 }
 .site-search input,
 .item-product,
@@ -22,7 +29,37 @@ html {
     flex-direction: row;
     flex-wrap: wrap;
 }
+.flex-box-2i>* {
+    width: calc(100%/2);
+}
+.flex-box-3i>* {
+    width: calc(100%/3);
+}
 .flex-box-4i>* {
     width: calc(100%/4);
+}
+.flex-space-20 {
+    margin: -10px;
+}
+.flex-space-20>* {
+    padding: 10px;
+}
+.flex-space-30 {
+    margin: -15px;
+}
+.flex-space-30>* {
+    padding: 15px;
+}
+.flex-space-40 {
+    margin: -20px;
+}
+.flex-space-40>* {
+    padding: 20px;
+}
+.flex-space-50 {
+    margin: -25px;
+}
+.flex-space-50>* {
+    padding: 25px;
 }
 

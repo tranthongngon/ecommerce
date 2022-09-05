@@ -1,12 +1,14 @@
 import React from "react";
-import carServices from "../../core/services/carServices";
+import carServices from "../../core/services/productServices";
 import dataCountry from "../../core/data/dataCountry";
 import {Link} from 'react-router-dom'
 import {ReactComponent as Edit} from '../../assets/icon/edit.svg';
 import {ReactComponent as Trash} from '../../assets/icon/trash.svg';
 import {ReactComponent as View} from '../../assets/icon/view.svg';
+import * as databoardActions from '../../store/actions/databoardActions';
+import {connect} from 'react-redux';
 
-const Displaydata = ({ carsDatabroard, fetchCars ,fnSetTypeAction , displayF}) => {
+const Displaydata = ({ carsDatabroard, fetchCars , displayForm, getProductEdit, getDataForm}) => {
     const deleteCar = id => {
         carServices
             .deleteCar(id)
@@ -18,11 +20,12 @@ const Displaydata = ({ carsDatabroard, fetchCars ,fnSetTypeAction , displayF}) =
                 console.log(err);
             });
     };
-    const editCar = (id) => {
-        carServices.getOneCar(id).then(res => console.log(res.data))
-        .catch(err => console.log(err));
-        fnSetTypeAction('edit');
-        displayF();
+    const editCar = (car) => {
+        for (const key in car) {
+            getDataForm(key,car[key])
+        }
+        getProductEdit(car)
+        displayForm('edit',car);
     }
     return (
         <table className="table-cars">
@@ -45,7 +48,10 @@ const Displaydata = ({ carsDatabroard, fetchCars ,fnSetTypeAction , displayF}) =
                             <td> {index + 1}</td>          
                             <td> <img src={car.urlImg} alt={car.name} className="img-td"></img></td>
                             <td> {car.name} </td>
-                            <td> {car.price} </td>
+                            <td> {Number(car.price).toLocaleString('en-US',{
+                            style:'currency',
+                            currency:'USD',
+                        })} </td>
                             <td> {car.yearProduced} </td>
                             {dataCountry.filter(c => c.code === car.country).map((n,index)=>(
                                 <td key={index}>{n.name}</td>
@@ -58,7 +64,7 @@ const Displaydata = ({ carsDatabroard, fetchCars ,fnSetTypeAction , displayF}) =
                             <td>
                                 <div className="action flex-box">
                                     <button data-view={car.id} className="btn-action btn-view" ><Link to="/prodcut-detail"><View/></Link></button>
-                                    <button data-edit={car.id} className="btn-action btn-edit" onClick={() => editCar(car.id)} ><Edit/></button>
+                                    <button data-edit={car.id} className="btn-action btn-edit" onClick={() => editCar(car)} ><Edit/></button>
                                     <button data-delete={car.id} className="btn-action btn-trash" onClick={() => deleteCar(car.id)}><Trash/></button>
                                 </div>
                             </td>
@@ -70,4 +76,21 @@ const Displaydata = ({ carsDatabroard, fetchCars ,fnSetTypeAction , displayF}) =
     );
 };
 
-export default Displaydata;
+const mapStateToProps = state => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps =  dispatch => {
+    return {
+        getProductEdit: product => {
+            dispatch(databoardActions.getProductEdit(product))
+        },
+        getDataForm: (nameF, valueF) => {
+            dispatch(databoardActions.getDataForm(nameF,valueF))
+        }
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Displaydata);

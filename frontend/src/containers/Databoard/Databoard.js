@@ -1,27 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import carServices from '../../core/services/carServices.js';
+import productServices from '../../core/services/productServices.js';
 import "./dataBoard.css";
 import Displaydata from './DisplayData.js';
 import Addeditdata from './AddEditData.js';
-import Pagination from './Pagination.js';
+import Pagination from '../../core/common/pagination/Pagination';
+import * as databoardActions from '../../store/actions/databoardActions';
+import {connect} from 'react-redux';
 
 
-const Databoard = () => {
-    const [carsDatabroard , setcarsDatabroard ] = useState([]);
-    const [typeAction, settypeAction] = useState('');
+const Databoard = ({getDataboardProduct,databoardProducts,currentPage,postPerPage,totalPost,setPageNumber,setTypeForm}) => {
     let blur = document.querySelector('#blur');
     let formCar = document.querySelector('#form-inner');
-     //pagiantion
-     const [currentPage, setcurrentPage] = useState(1);
-     const [postPerPage] = useState(5);
      //get current post
      const lastPost = currentPage * postPerPage;
      const firtPost = lastPost - postPerPage;
-     const totalPost = carsDatabroard.length;
-     const currentPost = carsDatabroard.slice(firtPost,lastPost);
-     //setpage number
-    const setPageNumber = number => setcurrentPage(number);
-    const fnSetTypeAction = type => settypeAction(type)
+     const currentPost = databoardProducts.slice(firtPost,lastPost);
 
     const displayF = () => {
         blur.classList.add('is-show');
@@ -31,20 +24,33 @@ const Databoard = () => {
         blur.classList.remove('is-show');
         formCar.classList.remove('is-show');
     }
-    const displayForm = (e) => {
-        e.preventDefault();
-        fnSetTypeAction('add');
-        displayF();
+    const displayForm = (type,productEdit) => {
+        setTypeForm(type)
+        const form = document.getElementById("form-add-edit-product");
+        if(type === 'add') {
+            form.reset();
+            displayF();
+        }else if(type === 'edit') {
+            form.reset();
+            for (const iterator of form.elements) {
+                for (const key in productEdit) {
+                    if (key === iterator.name) {
+                        const ipnutField = document.getElementById(iterator.getAttribute('id'));
+                        ipnutField.value = productEdit[key]
+                    }
+                }
+            }
+            displayF(); 
+        }
+        
     }
-    const hiddenForm = (e) => {
-        e.preventDefault();
+    const hiddenForm = () => {
         hiddenF();
     }
 
     const fetchCars = () => {
-        carServices.getCars().then(res => {
-          setcarsDatabroard(res.data);
-          console.log(res.data);
+        productServices.getProducts().then(res => {
+          getDataboardProduct(res.data);
         }).catch(err => {
           console.log(err);
         })
@@ -58,16 +64,16 @@ const Databoard = () => {
         <div className="site-databoard">
             <div className='container'>
                 <div className='top-databoard flex-box'>
-                <Pagination totalPost={totalPost} postPerPage={postPerPage} currentPage={currentPage} setPageNumber={setPageNumber} />
-                    <button className='display-form' onClick={displayForm}>
+                <Pagination totalPost={totalPost} postPerPage={postPerPage} currentPage={currentPage} setPageNumber={setPageNumber}/>
+                    <button className='display-form' onClick={() => {displayForm('add')}}>
                         add car
                     </button>
                 </div>
                 <div className="list-cas">
-                    <Displaydata carsDatabroard={currentPost} fetchCars = {fetchCars} fnSetTypeAction={fnSetTypeAction} displayF = {displayF}/>
+                    <Displaydata carsDatabroard={currentPost} fetchCars = {fetchCars} displayForm = {displayForm}/>
                 </div>
                 <div className='form-inner' id='form-inner'>
-                    <Addeditdata hiddenForm = {hiddenForm} typeAction = {typeAction} fetchCars={fetchCars}/>
+                    <Addeditdata hiddenForm = {hiddenForm} fetchCars={fetchCars}/>
                 </div>
                 <div className='blur' id='blur'></div>
             </div>
@@ -75,6 +81,28 @@ const Databoard = () => {
         </div>
     );
 }
-
-export default Databoard;
+const mapStateToProps = state => {
+    return {
+        databoardProducts: state.databoardReducer.databoardProducts,
+        totalPost: state.databoardReducer.databoardProducts.length,
+        currentPage: state.databoardReducer.currentPage,
+        postPerPage: state.databoardReducer.postPerPage,
+        productEdit: state.databoardReducer.productEdit
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        getDataboardProduct: products => {
+            console.log('databoard',products);
+            dispatch(databoardActions.getProdcuts(products));
+        },
+        setTypeForm: type => {
+            dispatch(databoardActions.setTypeForm(type))
+        },
+        setPageNumber: number => {
+            dispatch(databoardActions.setPageNumber(number));
+        }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Databoard);
 
